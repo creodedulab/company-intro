@@ -1,14 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: "export",
-  
-  // ⚠️ 중요: 아래 '/company-intro'는 방금 GitHub에서 만든 저장소 이름과 똑같아야 합니다!
-  // 만약 다른 이름으로 만드셨다면 그 이름으로 바꿔주세요. (앞에 슬래시 '/' 필수)
-  basePath: "/company-intro",
-  
+  /* config options here */
+  output: "export",  // <-- 이게 있어야 디자인이 안 깨집니다! (필수)
+  basePath: "/company-intro", // 주소 뒤에 붙는 이름
   images: {
-    unoptimized: true,
+    unoptimized: true, // 이게 있어야 이미지가 엑박 없이 나옵니다!
   },
 };
 
