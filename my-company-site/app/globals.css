@@ -8,14 +8,37 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 1. 무한 스크롤 애니메이션 정의 */
+@keyframes infinite-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* 2. 유틸리티 클래스 */
+@layer components {
+  /* 스크롤바 숨기기 */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 2줄 격자 구조 & 드래그 활성화 */
+  .instructor-grid {
+    display: grid;
+    grid-template-rows: repeat(2, min-content);
+    grid-auto-flow: column; /* 가로 방향으로 아이템 배치 */
+    gap: 2rem;
+    width: max-content; /* 내부 콘텐츠 크기에 맞게 가로로 길어짐 (드래그 필수 설정) */
+  }
+
+  /* 자동 흐름 애니메이션 (선택 사항: 클래스에 추가하면 흐릅니다) */
+  .animate-scroll {
+    animation: infinite-scroll 40s linear infinite;
   }
 }
 
