@@ -2,7 +2,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/Navbar"; // 👈 방금 만든 Navbar 가져오기
+import Navbar from "./components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +31,7 @@ export default function RootLayout({
         <footer className="bg-slate-900 text-slate-400 py-12 text-center text-sm">
           <div className="max-w-6xl mx-auto px-4">
             <p className="mb-2">&copy; 2024 크레오디교육연구소. All rights reserved.</p>
-            <p>전북 전주시 덕진구 와룡 2길 15 | 대표: 심명보</p>
+            <p>전북특별자치도 전주시 덕진구 와룡 2길 15 | 대표 : 심명보</p>
           </div>
         </footer>
       </body>
