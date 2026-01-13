@@ -8,15 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      animation: {
-        'infinite-scroll': 'infinite-scroll 40s linear infinite',
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
       },
-      keyframes: {
-        'infinite-scroll': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-50%)' },
-        }
-      }
     },
   },
   plugins: [],
