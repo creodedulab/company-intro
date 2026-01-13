@@ -9,12 +9,20 @@ export default function Home() {
 
   // 이미지 경로에도 prefix를 붙여줍니다.
   const lecturePhotos = [
-    { src: `${prefix}/ceo.jpg` },
-    { src: `${prefix}/ceo2.png` },
-    { src: `${prefix}/ceo3.png` },
-    { src: `${prefix}/ceo4.png` },
-    { src: `${prefix}/ceo5.png` },
-    { src: `${prefix}/ceo6.png` },
+    { src: `${prefix}/front01.jpg` },
+    { src: `${prefix}/front02.jpg` },
+    { src: `${prefix}/front03.jpg` },
+    { src: `${prefix}/front04.jpg` },
+    { src: `${prefix}/front05.jpg` },
+    { src: `${prefix}/front06.jpg` },
+    { src: `${prefix}/front07.jpg` },
+    { src: `${prefix}/front08.jpg` },
+    { src: `${prefix}/front09.jpg` },
+    { src: `${prefix}/front10.jpg` },
+    { src: `${prefix}/front11.jpg` },
+    { src: `${prefix}/front12.jpg` },
+    { src: `${prefix}/front13.jpg` },
+    { src: `${prefix}/front14.jpg` },
   ];
 
   const infinitePhotos = [...lecturePhotos, ...lecturePhotos];
@@ -55,7 +63,11 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+  <div 
+    className="min-h-screen select-none" // [추가 1] select-none: 텍스트/이미지 선택(블록 지정) 방지
+    onContextMenu={(e) => e.preventDefault()} // [추가 2] 우클릭 메뉴 뜨는 것 방지
+    onDragStart={(e) => e.preventDefault()}   // [추가 3] 이미지 드래그해서 저장하는 것 방지
+  >
       
       {/* 0. 인트로 섹션 */}
       <div className="relative h-[300vh]"> 
@@ -107,7 +119,7 @@ export default function Home() {
             성장을 도모하고 개인과 조직의 가능성을 연결합니다.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="contents" className="px-8 py-4 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-700 transition shadow-lg hover:shadow-indigo-500/25 inline-block text-lg">
+            <Link href="/contents" className="px-8 py-4 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-700 transition shadow-lg hover:shadow-indigo-500/25 inline-block text-lg">
               콘텐츠 보러가기
             </Link>
             <a href="#contact" onClick={handleScrollToContact} className="px-8 py-4 bg-white text-slate-700 font-bold border border-slate-200 rounded-2xl hover:bg-slate-50 hover:border-slate-300 transition inline-block text-lg cursor-pointer">
@@ -142,7 +154,7 @@ export default function Home() {
       {/* 3. 강의 현장 스케치 */}
       <section className="py-20 bg-slate-50 overflow-hidden animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-200">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900">뜨거운 강의 현장</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900">열정 가득 뜨거운 강의 현장</h2>
           <p className="text-slate-500 mt-2">크레오디의 열정 가득한 순간들을 만나보세요.</p>
         </div>
         <div className="relative w-full">
@@ -160,7 +172,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. 문의하기 & 5. SNS 섹션은 기존 코드 유지 */}
+      {/* 4. 문의하기 섹션 */}
       <section id="contact" className="py-16 md:py-24 bg-white animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-300">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-slate-900 break-keep">함께 성장할 준비가 되셨나요?</h2>
@@ -182,7 +194,14 @@ export default function Home() {
                   <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-indigo-600 shrink-0 shadow-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
                   </div>
-                  <div className="text-left"><p className="text-xs text-slate-400 font-bold uppercase tracking-wider">이메일 문의</p><p className="text-lg md:text-xl font-bold text-slate-800 tracking-tight break-all">ttingssam@naver.com</p></div>
+                  <div className="text-left">
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">이메일 문의</p>
+                    
+                    {/* ▼▼▼ [수정된 부분] 글자 크기 줄이고(text-base), 줄바꿈 금지(whitespace-nowrap) ▼▼▼ */}
+                    <p className="text-base md:text-xl font-bold text-slate-800 tracking-tight whitespace-nowrap">ttingssam@naver.com</p>
+                    {/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */}
+                    
+                  </div>
                 </div>
                 <a href="mailto:ttingssam@naver.com" className="w-full md:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition duration-300 text-center text-sm shadow-md">메일 보내기</a>
               </div>
@@ -190,6 +209,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 5. SNS 섹션 */}
       <section className="py-12 bg-white border-t border-slate-100 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-300">
         <div className="container mx-auto px-6 text-center">
           <h3 className="text-xs font-bold text-slate-300 uppercase tracking-[0.2em] mb-8">Connect with CREOD</h3>

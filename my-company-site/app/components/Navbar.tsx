@@ -5,8 +5,8 @@ import Link from "next/link";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  
-  // ⚠️ [핵심] 여기에 저장소 이름을 직접 넣습니다. (변수 X, 상수 O)
+
+  // ⚠️ [중요] 여기에 저장소 이름을 넣어주면 로고를 무조건 찾습니다!
   const prefix = "/company-intro";
 
   const menuItems = [
@@ -24,16 +24,16 @@ export default function Navbar() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           
-          {/* ▼▼▼ [수정] 영어 CREOD 삭제, 이미지 경로 하드코딩 ▼▼▼ */}
+          {/* ▼▼▼ [수정 완료] src="/logo.png"를 아래처럼 바꿨습니다! ▼▼▼ */}
           <Link href="/" className="font-bold text-xl md:text-2xl text-indigo-900 flex items-center gap-2 group">
             <img 
               src={`${prefix}/logo.png`} 
               alt="CREOD Logo" 
               className="h-8 w-auto object-contain transition-transform group-hover:scale-105" 
             />
-            {/* 여기에 영어 CREOD가 아예 없어야 합니다 */}
             <span className="tracking-tight">크레오디교육연구소</span>
           </Link>
+          {/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */}
 
           {/* PC 메뉴 */}
           <div className="hidden md:flex space-x-8">

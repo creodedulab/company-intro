@@ -26,7 +26,7 @@ export default function ContentsPage() {
         {/* 1. 성인(청년, 기업) 섹션 */}
         <section className="mb-24">
           <div className="flex items-center gap-4 mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">성인 <span className="text-indigo-600 text-lg md:text-xl font-medium">(청년, 기업)</span></h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">성인 <span className="text-indigo-600 text-lg md:text-xl font-medium">(기업, 청년, 기관&센터)</span></h2>
             <div className="flex-grow h-px bg-slate-200"></div>
           </div>
           
@@ -53,7 +53,7 @@ export default function ContentsPage() {
         {/* 2. 청소년(진로/진학/캠프) 섹션 */}
         <section>
           <div className="flex items-center gap-4 mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">청소년 <span className="text-indigo-600 text-lg md:text-xl font-medium">(진로 / 진학 / 캠프)</span></h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">청소년 <span className="text-indigo-600 text-lg md:text-xl font-medium">(진로&진학 / 교내캠프 / 기관&센터)</span></h2>
             <div className="flex-grow h-px bg-slate-200"></div>
           </div>
 
