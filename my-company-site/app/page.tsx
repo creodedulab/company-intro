@@ -4,14 +4,17 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
-  // 슬라이드에 사용할 이미지 목록
+  // 🚀 [추가] 배포 환경(company-intro)과 로컬 환경(/)의 경로 차이를 자동으로 해결합니다.
+  const basePath = process.env.NODE_ENV === "production" ? "/company-intro" : "";
+
+  // 슬라이드에 사용할 이미지 목록 (경로 앞에 ${basePath} 적용)
   const lecturePhotos = [
-    { src: "/ceo.jpg" },
-    { src: "/ceo2.png" },
-    { src: "/ceo3.png" },
-    { src: "/ceo4.png" },
-    { src: "/ceo5.png" },
-    { src: "/ceo6.png" },
+    { src: `${basePath}/ceo.jpg` },
+    { src: `${basePath}/ceo2.png` },
+    { src: `${basePath}/ceo3.png` },
+    { src: `${basePath}/ceo4.png` },
+    { src: `${basePath}/ceo5.png` },
+    { src: `${basePath}/ceo6.png` },
   ];
 
   const infinitePhotos = [...lecturePhotos, ...lecturePhotos];
@@ -69,7 +72,6 @@ export default function Home() {
           <div 
             className="flex flex-col items-center will-change-transform"
             style={{ 
-              // 전체 컨테이너는 나중에(1500px 이후) 사라짐
               opacity: Math.max(0, 1 - (scrollY - 1500) / 500),
               pointerEvents: scrollY > 2000 ? 'none' : 'auto' 
             }}
@@ -78,30 +80,24 @@ export default function Home() {
             <div 
               className="w-40 h-40 md:w-64 md:h-64 bg-transparent flex items-center justify-center mb-8"
               style={{ 
-                // 스크롤에 따라 로고 확대
                 transform: `scale(${1 + scrollY / 1000})`, 
               }}
             >
               <img 
-                src="/logo.png" 
+                src={`${basePath}/logo.png`} // 🚀 [수정] 배포 경로 적용
                 alt="CREOD Logo" 
                 className="w-full h-full object-contain" 
               />
             </div>
             
-            {/* ▼▼▼ [수정된 부분] 텍스트만 먼저 투명해지도록 설정 ▼▼▼ */}
             <h1 
               className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight text-center"
               style={{
-                // 스크롤 0~700px 구간에서 텍스트 투명도 1 -> 0으로 변경
-                // 로고는 계속 커지지만 글자는 먼저 사라져서 시선이 로고에 집중됨
                 opacity: Math.max(0, 1 - scrollY / 700)
               }}
             >
               CREO.D Education Lab
             </h1>
-            {/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */}
-
           </div>
         </div>
       </div>
@@ -147,26 +143,20 @@ export default function Home() {
       <section className="py-10 md:py-12 bg-white border-b border-slate-100 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="flex flex-row justify-between md:justify-around items-start md:items-center gap-2 md:gap-4 text-center">
-            
             <div className="flex flex-col items-center gap-2 group w-1/3">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-2xl md:text-3xl group-hover:scale-110 transition-transform duration-300">🚀</div>
               <h3 className="text-sm md:text-lg font-bold text-slate-800 break-keep">즐거운 소통</h3>
             </div>
-
             <div className="hidden md:block w-px h-12 bg-slate-100"></div>
-
             <div className="flex flex-col items-center gap-2 group w-1/3">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-2xl md:text-3xl group-hover:scale-110 transition-transform duration-300">💡</div>
               <h3 className="text-sm md:text-lg font-bold text-slate-800 break-keep">혁신적 아이디어</h3>
             </div>
-
             <div className="hidden md:block w-px h-12 bg-slate-100"></div>
-
             <div className="flex flex-col items-center gap-2 group w-1/3">
               <div className="w-12 h-12 md:w-14 md:h-14 bg-indigo-50 rounded-2xl flex items-center justify-center text-2xl md:text-3xl group-hover:scale-110 transition-transform duration-300">🤝</div>
               <h3 className="text-sm md:text-lg font-bold text-slate-800 break-keep">함께하는 동료</h3>
             </div>
-
           </div>
         </div>
       </section>
@@ -182,7 +172,7 @@ export default function Home() {
             {infinitePhotos.map((photo, index) => (
               <div key={index} className="w-[280px] md:w-[400px] h-[200px] md:h-[280px] rounded-2xl overflow-hidden shadow-md shrink-0 bg-gray-200 border border-slate-200">
                 <img 
-                  src={photo.src} 
+                  src={photo.src} // 🚀 [수정] 배포 경로가 이미 lecturePhotos 배열에 적용됨
                   alt={`강의 현장 ${index}`} 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
