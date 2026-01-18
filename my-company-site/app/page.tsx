@@ -4,10 +4,9 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
-  // ⚠️ [핵심] 저장소 이름 직접 입력
   const prefix = "/company-intro";
+  const bgImage = `${prefix}/intro-bg.jpg`; 
 
-  // 이미지 경로에도 prefix를 붙여줍니다.
   const lecturePhotos = [
     { src: `${prefix}/front01.jpg` },
     { src: `${prefix}/front02.jpg` },
@@ -28,7 +27,6 @@ export default function Home() {
   const infinitePhotos = [...lecturePhotos, ...lecturePhotos];
   const [scrollY, setScrollY] = useState(0);
 
-  // 문의하기 이동
   const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const section = document.getElementById('contact');
@@ -63,17 +61,29 @@ export default function Home() {
   }, []);
 
   return (
-  <div 
-    className="min-h-screen select-none" // [추가 1] select-none: 텍스트/이미지 선택(블록 지정) 방지
-    onContextMenu={(e) => e.preventDefault()} // [추가 2] 우클릭 메뉴 뜨는 것 방지
-    onDragStart={(e) => e.preventDefault()}   // [추가 3] 이미지 드래그해서 저장하는 것 방지
-  >
+    <div 
+      className="min-h-screen select-none" 
+      onContextMenu={(e) => e.preventDefault()} 
+      onDragStart={(e) => e.preventDefault()} 
+    >
       
       {/* 0. 인트로 섹션 */}
       <div className="relative h-[300vh]"> 
-        <div className="sticky top-0 h-screen flex flex-col items-center justify-center bg-white z-40 overflow-hidden">
+        <div className="sticky top-0 h-screen flex flex-col items-center justify-center z-40 overflow-hidden bg-white">
+          
+          {/* 배경 이미지 레이어 (페이드 효과 추가) */}
+          <img 
+            src={bgImage} 
+            alt="Background" 
+            className="absolute inset-0 w-full h-full object-cover -z-10" 
+            style={{ 
+              opacity: Math.max(0, 0.2 - scrollY / 3333),
+              transition: 'opacity 0.1s ease-out'
+            }}
+          />
+
           <div 
-            className="flex flex-col items-center will-change-transform"
+            className="flex flex-col items-center will-change-transform relative z-10"
             style={{ 
               opacity: Math.max(0, 1 - (scrollY - 1500) / 500),
               pointerEvents: scrollY > 2000 ? 'none' : 'auto' 
@@ -85,7 +95,7 @@ export default function Home() {
               style={{ transform: `scale(${1 + scrollY / 1000})` }}
             >
               <img 
-                src={`${prefix}/logo.png`}   // ⚠️ [수정] prefix 적용
+                src={`${prefix}/logo.png`} 
                 alt="CREOD Logo" 
                 className="w-full h-full object-contain" 
               />
@@ -98,6 +108,28 @@ export default function Home() {
               CREO.D Education Lab
             </h1>
           </div>
+
+          {/* 스크롤 유도 화살표 넛지 */}
+          <div 
+            className="absolute bottom-10 right-8 md:bottom-12 md:right-12 flex flex-col items-center gap-1 z-50 animate-bounce pointer-events-none"
+            style={{ 
+              opacity: Math.max(0, 1 - scrollY / 1000),
+              transition: 'opacity 0.3s ease-out'
+            }}
+          >
+            <span className="text-[10px] md:text-xs font-bold text-slate-400 tracking-widest">SCROLL</span>
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              strokeWidth={2} 
+              stroke="currentColor" 
+              className="w-6 h-6 md:w-8 md:h-8 text-slate-400"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
+            </svg>
+          </div>
+
         </div>
       </div>
 
@@ -162,7 +194,7 @@ export default function Home() {
             {infinitePhotos.map((photo, index) => (
               <div key={index} className="w-[280px] md:w-[400px] h-[200px] md:h-[280px] rounded-2xl overflow-hidden shadow-md shrink-0 bg-gray-200 border border-slate-200">
                 <img 
-                  src={photo.src} // ⚠️ [수정] 여기도 prefix 적용됨
+                  src={photo.src} 
                   alt={`강의 현장 ${index}`} 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
@@ -196,11 +228,7 @@ export default function Home() {
                   </div>
                   <div className="text-left">
                     <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">이메일 문의</p>
-                    
-                    {/* ▼▼▼ [수정된 부분] 글자 크기 줄이고(text-base), 줄바꿈 금지(whitespace-nowrap) ▼▼▼ */}
                     <p className="text-base md:text-xl font-bold text-slate-800 tracking-tight whitespace-nowrap">ttingssam@naver.com</p>
-                    {/* ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲ */}
-                    
                   </div>
                 </div>
                 <a href="mailto:ttingssam@naver.com" className="w-full md:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition duration-300 text-center text-sm shadow-md">메일 보내기</a>
