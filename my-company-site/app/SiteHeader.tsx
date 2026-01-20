@@ -131,7 +131,7 @@ export default function SiteHeader() {
               <Link href="/contents" onClick={closeMenu} className="block px-4 py-3 text-lg font-bold text-slate-800 hover:bg-white/50 rounded-xl border-b border-slate-100/50">콘텐츠</Link>
               <Link href="/instructors" onClick={closeMenu} className="block px-4 py-3 text-lg font-bold text-slate-800 hover:bg-white/50 rounded-xl border-b border-slate-100/50">강사진</Link>
               <Link href="/satisfaction" onClick={closeMenu} className="block px-4 py-3 text-lg font-bold text-slate-800 hover:bg-white/50 rounded-xl border-b border-slate-100/50">만족도조사</Link>
-              <a href="https://padlet.com/ttingssam/archive" target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="block px-4 py-3 text-lg font-bold text-slate-800 hover:bg-white/50 rounded-xl border-b border-slate-100/50">무료서비스</a>
+              <a href="https://padlet.com/ttingssam/padlet-jy6ojlig5uax46ly" target="_blank" rel="noopener noreferrer" onClick={closeMenu} className="block px-4 py-3 text-lg font-bold text-slate-800 hover:bg-white/50 rounded-xl border-b border-slate-100/50">무료서비스</a>
               
               <div className="pt-3 pb-2">
                 <Link href="/#contact" onClick={handleScrollToContact} className="block w-full px-4 py-3 text-center bg-slate-900 text-white text-lg font-bold rounded-xl hover:bg-indigo-600 transition shadow-lg">
