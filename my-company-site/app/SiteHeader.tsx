@@ -54,7 +54,7 @@ export default function SiteHeader() {
               <img src="/logo.png" alt="로고" className="w-full h-full object-contain"/>
             </div>
             <span className="text-lg md:text-xl font-extrabold tracking-tight text-slate-900">
-              CREO.D
+              크레오디교육연구소
             </span>
           </Link>
         </div>
