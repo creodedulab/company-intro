@@ -3,7 +3,6 @@
 import React from "react";
 
 export default function AboutPage() {
-  // ✅ 1. 배포용 주소 꼬리표 설정 (이게 있어야 이미지가 보입니다!)
   const src = "/company-intro";
 
   // 8가지 D 키워드
@@ -41,7 +40,7 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold text-indigo-900 mb-4">What is CREO.D?</h2>
           <p className="text-lg text-slate-700 mb-12 max-w-3xl mx-auto">
             <strong>'Creo(창조하다)'</strong>의 설렘을 담아,<br/>
-            당신의 꿈(Dream)이 다채롭게 디자인될 수 있도록 <strong>8가지 즐거운 요소(8D)</strong>를 선물합니다.
+            당신의 꿈(Dream)이 다채롭게 디자인될 수 있도록 <strong>8가지 요소(8D)</strong>를 선물합니다.
           </p>
 
           <div className="relative max-w-5xl mx-auto py-10">
@@ -67,7 +66,7 @@ export default function AboutPage() {
                   <span className="text-lg md:text-xl font-medium opacity-80 mb-1">Design Your</span>
                   <span className="text-3xl md:text-5xl font-extrabold tracking-wider">DREAM</span>
                 </div>
-                <div className="absolute top-0 left-0 w-full h-full bg-indigo-400 rounded-full opacity-20 animate-ping"></div>
+                <div className="absolute top-0 left-0 w-full h-full bg-indigo-700 rounded-full opacity-20 animate-ping"></div>
               </div>
 
               {/* 오른쪽 그룹 */}

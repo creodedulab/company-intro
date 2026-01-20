@@ -24,8 +24,9 @@
   }
 }
 
+/* 3. 유틸리티 클래스 (스크롤바 숨기기 + 애니메이션) */
 @layer utilities {
-  /* ▼▼▼ [추가] 스크롤바 숨기기 유틸리티 (상단 메뉴바용) ▼▼▼ */
+  /* 스크롤바 숨기기 (상단 메뉴바용) */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -33,8 +34,36 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* (1) 무한 스크롤 애니메이션 클래스 */
+  .animate-scroll {
+    display: flex;
+    width: max-content;
+    animation: infinite-scroll 60s linear infinite;
+  }
+
+  /* (2) 모바일 메뉴 슬라이드 다운 클래스 */
+  .animate-slideDown {
+    animation: slideDown 0.3s ease-out forwards;
+  }
+
+  /* (3) 팝업창 페이드 인 클래스 */
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  /* (4) 팝업창 스케일 인 클래스 */
+  .animate-scaleIn {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  /* (5) 천천히 깜빡임 클래스 */
+  .animate-pulse-slow {
+    animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
 }
 
+/* 4. 컴포넌트 스타일 */
 @layer components {
   /* 커스텀 스크롤바 (콘텐츠 영역용) */
   .custom-scrollbar {
@@ -73,20 +102,12 @@
   }
 }
 
-/* 4. 애니메이션 정의 (여기가 중요합니다!) */
-
-/* (1) 무한 스크롤 (강사진, 현장스케치) */
+/* 5. 키프레임 정의 (전역) */
 @keyframes infinite-scroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
-.animate-scroll {
-  display: flex;
-  width: max-content;
-  animation: infinite-scroll 60s linear infinite;
-}
 
-/* (2) 모바일 메뉴 슬라이드 다운 */
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -97,20 +118,12 @@
     transform: translateY(0);
   }
 }
-.animate-slideDown {
-  animation: slideDown 0.3s ease-out forwards;
-}
 
-/* (3) 팝업창 페이드 인 (배경) */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-.animate-fadeIn {
-  animation: fadeIn 0.3s ease-out forwards;
-}
 
-/* (4) 팝업창 스케일 인 (내용물) */
 @keyframes scaleIn {
   from {
     opacity: 0;
@@ -121,15 +134,8 @@
     transform: scale(1);
   }
 }
-.animate-scaleIn {
-  animation: scaleIn 0.3s ease-out forwards;
-}
 
-/* (5) 천천히 깜빡임 (회사소개 DREAM 원) */
 @keyframes pulse-slow {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
-}
-.animate-pulse-slow {
-  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
