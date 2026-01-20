@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "크레오디교육연구소(Creo.D)",
     images: [
       {
-        url: "/og-image.jpg", 
+        url: "/og-image.png", 
         width: 1200,
         height: 630,
         alt: "크레오디교육연구소 대표 이미지",        
