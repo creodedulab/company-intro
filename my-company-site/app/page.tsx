@@ -4,17 +4,17 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Home() {
-  const prefix = "/company-intro";
-  const bgImage = `${prefix}/intro-bg.jpg`; 
+  const src = "/company-intro";
+  const bgImage = `/intro-bg.jpg`; 
 
   const lecturePhotos = [
-    { src: `${prefix}/front01.jpg` }, { src: `${prefix}/front02.jpg` },
-    { src: `${prefix}/front03.jpg` }, { src: `${prefix}/front04.jpg` },
-    { src: `${prefix}/front05.jpg` }, { src: `${prefix}/front06.jpg` },
-    { src: `${prefix}/front07.jpg` }, { src: `${prefix}/front08.jpg` },
-    { src: `${prefix}/front09.jpg` }, { src: `${prefix}/front10.jpg` },
-    { src: `${prefix}/front11.jpg` }, { src: `${prefix}/front12.jpg` },
-    { src: `${prefix}/front13.jpg` }, { src: `${prefix}/front14.jpg` },
+    { src: `/front01.jpg` }, { src: `/front02.jpg` },
+    { src: `/front03.jpg` }, { src: `/front04.jpg` },
+    { src: `/front05.jpg` }, { src: `/front06.jpg` },
+    { src: `/front07.jpg` }, { src: `/front08.jpg` },
+    { src: `/front09.jpg` }, { src: `/front10.jpg` },
+    { src: `/front11.jpg` }, { src: `/front12.jpg` },
+    { src: `/front13.jpg` }, { src: `/front14.jpg` },
   ];
 
   const infinitePhotos = [...lecturePhotos, ...lecturePhotos];
@@ -80,7 +80,7 @@ export default function Home() {
               className="w-40 h-40 md:w-64 md:h-64 bg-transparent flex items-center justify-center mb-8"
               style={{ transform: `scale(${Math.max(1, 1 + scrollY / 1000)})` }}
             >
-              <img src={`${prefix}/logo.png`} alt="CREOD Logo" className="w-full h-full object-contain" />
+              <img src={`/logo.png`} alt="CREOD Logo" className="w-full h-full object-contain" />
             </div>
             
             <h1 

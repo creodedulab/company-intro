@@ -3,7 +3,7 @@
 import React, { useState } from "react"; // useState 추가
 
 export default function InstructorsPage() {
-  const prefix = "/company-intro";
+  const src = "/company-intro";
 
   // 1. 클릭된 이미지의 경로를 저장하는 상태 변수
   // null이면 아무것도 클릭 안 된 상태, 값이 있으면 그 이미지가 확대된 상태
@@ -31,7 +31,7 @@ export default function InstructorsPage() {
   const allInstructors = [...instructors, ...instructors];
 
   const getImagePath = (src: string) => {
-    return src.startsWith("http") ? src : `${prefix}/${src}`;
+    return src.startsWith("http") ? src : `/${src}`;
   };
 
   // 2. 이미지 클릭 시 호출되는 함수 (확대)

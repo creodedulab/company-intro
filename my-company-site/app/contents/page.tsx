@@ -12,7 +12,7 @@ interface ContentItem {
 }
 
 export default function ContentsPage() {
-  const prefix = "/company-intro";
+  const src = "/company-intro";
   
   // 팝업 상태 관리
   const [selectedContent, setSelectedContent] = useState<ContentItem | null>(null);
@@ -245,7 +245,7 @@ export default function ContentsPage() {
 
   // 이미지 경로 처리 함수 (이미지 없으면 회색 박스)
   const getImgSrc = (imgName: string) => {
-    return `${prefix}/${imgName}`;
+    return `/${imgName}`;
   };
 
   return (

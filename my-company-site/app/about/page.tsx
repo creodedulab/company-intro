@@ -4,7 +4,7 @@ import React from "react";
 
 export default function AboutPage() {
   // ✅ 1. 배포용 주소 꼬리표 설정 (이게 있어야 이미지가 보입니다!)
-  const prefix = "/company-intro";
+  const src = "/company-intro";
 
   // 8가지 D 키워드
   const dKeywords = [
@@ -92,9 +92,8 @@ export default function AboutPage() {
             {/* 사진 영역 */}
             <div className="w-full md:w-1/3">
               <div className="aspect-[3/4] relative rounded-2xl overflow-hidden shadow-lg">
-                {/* ✅ 2. 이미지 경로 수정 완료! prefix를 붙여줬습니다 */}
                 <img 
-                  src={`${prefix}/ceo.jpg`}
+                  src={`/ceo.jpg`}
                   alt="심명보 대표"
                   className="w-full h-full object-cover"
                 />
