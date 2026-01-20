@@ -20,37 +20,12 @@ export default function Home() {
   const infinitePhotos = [...lecturePhotos, ...lecturePhotos];
   const [scrollY, setScrollY] = useState(0);
 
-  const handleScrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const section = document.getElementById('contact');
-    if (section) {
-      setTimeout(() => {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 10);
-    }
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('opacity-100', 'translate-y-0');
-          entry.target.classList.remove('opacity-0', 'translate-y-10');
-        }
-      });
-    }, observerOptions);
-    const elements = document.querySelectorAll('.animate-on-scroll');
-    elements.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
   }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -60,7 +35,6 @@ export default function Home() {
     const formData = new FormData(form);
     const queryString = new URLSearchParams();
     
-    // 대표님의 구글 설문지 ID (유지됨)
     queryString.append("entry.401791583", formData.get("name") as string);
     queryString.append("entry.1010261547", formData.get("email") as string);
     queryString.append("entry.604668895", formData.get("tel") as string);
@@ -79,8 +53,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen select-none" onContextMenu={(e) => e.preventDefault()} onDragStart={(e) => e.preventDefault()}>
+    <div className="min-h-screen select-none">
       
+      {/* ⚠️ 상단 메뉴바 코드는 이제 layout.tsx로 이동했으므로 여기서 삭제했습니다. */}
+
       {/* 0. 인트로 섹션 */}
       <div className="relative h-[300vh]"> 
         <div className="sticky top-0 h-screen flex flex-col items-center justify-center z-40 overflow-hidden bg-white">
@@ -90,38 +66,33 @@ export default function Home() {
             className="absolute inset-0 w-full h-full object-cover -z-10" 
             style={{ 
               opacity: Math.max(0, 0.2 - scrollY / 3333),
-              transition: 'opacity 0.1s ease-out'
             }}
           />
 
           <div 
-            className="flex flex-col items-center will-change-transform relative z-10"
+            className="flex flex-col items-center relative z-10"
             style={{ 
               opacity: Math.max(0, 1 - (scrollY - 1500) / 500),
               pointerEvents: scrollY > 2000 ? 'none' : 'auto' 
             }}
           >
-            {/* 로고 이미지 */}
             <div 
               className="w-40 h-40 md:w-64 md:h-64 bg-transparent flex items-center justify-center mb-8"
-              style={{ transform: `scale(${1 + scrollY / 1000})` }}
+              style={{ transform: `scale(${Math.max(1, 1 + scrollY / 1000)})` }}
             >
               <img src={`${prefix}/logo.png`} alt="CREOD Logo" className="w-full h-full object-contain" />
             </div>
             
-            {/* 메인 글자 투명도 조절 */}
             <h1 
               className="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight text-center"
               style={{ 
                 opacity: Math.max(0, 1 - scrollY / 600),
-                transition: 'opacity 0.1s ease-out'
               }}
             >
               CREO.D Education Lab
             </h1>
           </div>
 
-          {/* 화살표 넛지 */}
           <div className="absolute bottom-10 right-8 md:bottom-12 md:right-12 flex flex-col items-center gap-1 z-50 animate-bounce pointer-events-none"
             style={{ opacity: Math.max(0, 1 - scrollY / 1000) }}>
             <span className="text-[10px] md:text-xs font-bold text-slate-400 tracking-widest">SCROLL</span>
@@ -133,7 +104,7 @@ export default function Home() {
       </div>
 
       {/* 1. 히어로 섹션 */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-white animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
+      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-white">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-50/50 via-white to-white -z-10" />
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10">
           <span className="inline-block py-1 px-3 rounded-full bg-indigo-50 text-indigo-600 text-sm font-bold mb-8 border border-indigo-100">크레오디교육연구소</span>
@@ -146,13 +117,13 @@ export default function Home() {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="/contents" className="px-8 py-4 bg-indigo-600 text-white font-bold rounded-2xl hover:bg-indigo-700 transition shadow-lg text-lg">콘텐츠 보러가기</Link>
-            <a href="#contact" onClick={handleScrollToContact} className="px-8 py-4 bg-white text-slate-700 font-bold border border-slate-200 rounded-2xl hover:bg-slate-50 transition text-lg cursor-pointer">문의하기</a>
+            <Link href="/#contact" className="px-8 py-4 bg-white text-slate-700 font-bold border border-slate-200 rounded-2xl hover:bg-slate-50 transition text-lg cursor-pointer">문의하기</Link>
           </div>
         </div>
       </section>
 
-      {/* 2. 핵심 가치 (기존 동일) */}
-      <section className="py-10 md:py-12 bg-white border-b border-slate-100 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-100">
+      {/* 2. 핵심 가치, 3. 현장 스케치 (기존 내용 유지) */}
+      <section className="py-10 md:py-12 bg-white border-b border-slate-100">
         <div className="max-w-6xl mx-auto px-4 md:px-6">
           <div className="flex flex-row justify-between md:justify-around items-start md:items-center gap-2 md:gap-4 text-center">
             <div className="flex flex-col items-center gap-2 group w-1/3">
@@ -173,8 +144,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 3. 현장 스케치 (기존 동일) */}
-      <section className="py-20 bg-slate-50 overflow-hidden animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-200">
+      <section className="py-20 bg-slate-50 overflow-hidden">
         <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900">열정 가득 뜨거운 강의 현장</h2>
           <p className="text-slate-500 mt-2">크레오디의 열정 가득한 순간들을 만나보세요.</p>
@@ -194,8 +164,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. 문의하기 섹션 (버튼 기능 추가됨) */}
-      <section id="contact" className="py-20 md:py-32 bg-white animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out">
+      {/* 4. 문의하기 섹션 */}
+      <section id="contact" className="py-20 md:py-32 bg-white">
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-16 text-slate-900">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Ready to Start?</h2>
@@ -203,39 +173,25 @@ export default function Home() {
           </div>
           <div className="grid md:grid-cols-2 gap-12 items-start">
             
-            {/* 왼쪽: 연락처 정보 및 버튼 */}
             <div className="space-y-10">
-              
-              {/* 연락처 + 전화하기 버튼 */}
               <div className="flex items-start gap-5">
                 <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center shrink-0 text-xl">👤</div>
                 <div className="space-y-1">
                   <h3 className="font-bold text-slate-900 text-lg">연락처</h3>
                   <div className="flex flex-wrap items-center gap-3">
                     <p className="font-bold text-slate-600">010-9659-5120</p>
-                    <a 
-                      href="tel:010-9659-5120" 
-                      className="text-xs font-bold px-3 py-1 bg-white border border-indigo-200 text-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition shadow-sm"
-                    >
-                      전화하기
-                    </a>
+                    <a href="tel:010-9659-5120" className="text-xs font-bold px-3 py-1 bg-white border border-indigo-200 text-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition shadow-sm">전화하기</a>
                   </div>
                 </div>
               </div>
 
-              {/* 이메일 + 이메일보내기 버튼 */}
               <div className="flex items-start gap-5">
                 <div className="w-12 h-12 bg-indigo-50 rounded-xl flex items-center justify-center shrink-0 text-xl">✉️</div>
                 <div className="space-y-1">
                   <h3 className="font-bold text-slate-900 text-lg">이메일</h3>
                   <div className="flex flex-wrap items-center gap-3">
                     <p className="font-bold text-slate-600">ttingssam@naver.com</p>
-                    <a 
-                      href="mailto:ttingssam@naver.com" 
-                      className="text-xs font-bold px-3 py-1 bg-white border border-indigo-200 text-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition shadow-sm"
-                    >
-                      메일보내기
-                    </a>
+                    <a href="mailto:ttingssam@naver.com" className="text-xs font-bold px-3 py-1 bg-white border border-indigo-200 text-indigo-600 rounded-full hover:bg-indigo-600 hover:text-white transition shadow-sm">메일보내기</a>
                   </div>
                 </div>
               </div>
@@ -246,7 +202,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 오른쪽: 입력 폼 */}
             <div>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input type="text" name="name" required placeholder="성함 또는 기업/기관/학교" className="w-full px-6 py-4 bg-slate-50 rounded-xl border-none outline-none focus:ring-2 focus:ring-indigo-500" />
@@ -262,7 +217,7 @@ export default function Home() {
       </section>
 
       {/* 5. SNS 섹션 */}
-      <section className="py-12 bg-white border-t border-slate-100 animate-on-scroll opacity-0 translate-y-10 transition-all duration-1000 ease-out delay-300">
+      <section className="py-12 bg-white border-t border-slate-100">
         <div className="container mx-auto px-6 text-center">
           <h3 className="text-xs font-bold text-slate-300 uppercase tracking-[0.2em] mb-8">Connect with CREOD</h3>
           <div className="flex justify-center items-center gap-6 md:gap-12">

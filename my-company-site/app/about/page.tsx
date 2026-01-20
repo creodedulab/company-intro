@@ -1,6 +1,11 @@
-import Image from "next/image";
+"use client";
+
+import React from "react";
 
 export default function AboutPage() {
+  // ✅ 1. 배포용 주소 꼬리표 설정 (이게 있어야 이미지가 보입니다!)
+  const prefix = "/company-intro";
+
   // 8가지 D 키워드
   const dKeywords = [
     { word: "Develop", mean: "개발" },
@@ -16,14 +21,13 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white pt-32 pb-20">
       
-      {/* 1. 페이지 헤더 (문구 수정 완료!) */}
+      {/* 1. 페이지 헤더 */}
       <section className="px-4 text-center mb-20">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-5xl font-extrabold text-indigo-900 mb-6 leading-tight">
             즐거운 배움, 깊은 울림<br className="hidden md:block" /> 
             꿈을 현실로 만드는 특별한 경험
           </h1>
-          {/* ▼▼▼ 여기 수정했습니다! ▼▼▼ */}
           <p className="text-xl text-slate-600 leading-relaxed">
             배움이 설렘이 되고 경험이 놀이가 될 때,<br className="md:hidden"/> 
             마음 속 깊은 곳의 <strong>진짜 꿈</strong>이 피어납니다.
@@ -85,17 +89,17 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
             
-{/* 사진 영역 (일반 img 태그로 교체) */}
-<div className="w-full md:w-1/3">
-  <div className="aspect-[3/4] relative rounded-2xl overflow-hidden shadow-lg">
-    {/* Next.js Image 대신 기본 img 태그 사용 */}
-    <img 
-      src="ceo.jpg"
-      alt="심명보 대표"
-      className="w-full h-full object-cover"
-    />
-  </div>
-</div>
+            {/* 사진 영역 */}
+            <div className="w-full md:w-1/3">
+              <div className="aspect-[3/4] relative rounded-2xl overflow-hidden shadow-lg">
+                {/* ✅ 2. 이미지 경로 수정 완료! prefix를 붙여줬습니다 */}
+                <img 
+                  src={`${prefix}/ceo.jpg`}
+                  alt="심명보 대표"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
 
             {/* 텍스트 영역 */}
             <div className="w-full md:w-2/3 text-left">
@@ -120,7 +124,7 @@ export default function AboutPage() {
                   서로의 꿈을 응원하는 따뜻한 축제 같은 교육을 지향합니다.
                 </p>
                 <p>
-                  여러분의 삶이 <strong>한 변의 멋진 드라마가 되도록</strong>,<br/>
+                  여러분의 삶이 <strong>한 편의 멋진 드라마가 되도록</strong>,<br/>
                   크레오디가 <strong>즐거운 에너지</strong>로 함께하겠습니다.
                 </p>
               </div>
