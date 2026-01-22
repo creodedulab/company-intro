@@ -5,27 +5,25 @@ import React, { useState } from "react"; // useState 추가
 export default function InstructorsPage() {
   const src = "/company-intro";
 
-  // 1. 클릭된 이미지의 경로를 저장하는 상태 변수
-  // null이면 아무것도 클릭 안 된 상태, 값이 있으면 그 이미지가 확대된 상태
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const instructors = [
     { img: "gangsa01.png" }, 
-    { img: "https://via.placeholder.com/400x500" },
+    { img: "gangsa09.png" },
     { img: "gangsa02.png" },
-    { img: "https://via.placeholder.com/400x500" },
+    { img: "gangsa10.png" },
     { img: "gangsa03.png" },
-    { img: "https://via.placeholder.com/400x500" },
+    { img: "gangsa11.png" },
     { img: "gangsa04.png" },
-    { img: "https://via.placeholder.com/400x500" },
+    { img: "gangsa12.png" },
     { img: "gangsa05.png" },
-    { img: "https://via.placeholder.com/400x500" },
+    { img: "gangsa13.png" },
     { img: "gangsa06.png" },
-    { img: "https://via.placeholder.com/400x500" },
+    { img: "gangsa14.png" },
     { img: "gangsa07.png" },
-    { img: "https://via.placeholder.com/400x500" },
+    { img: "gangsa15.png" },
     { img: "gangsa08.png" },
-    { img: "https://via.placeholder.com/400x500" },
+    { img: "gangsa16.png" },
   ];
 
   const allInstructors = [...instructors, ...instructors];

@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SiteHeader from "./SiteHeader";
+import SiteFooter from "./SiteFooter";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://creodedulab.github.io"),
   title: "크레오디교육연구소 | 꿈을 설계하고 성장을 디자인합니다",
-  description: "진로교육, 취업캠프, 창업교육, 강사양성, 띵쌤과 함께하는 크레오디교육연구소 공식 홈페이지입니다. 전국 출강 가능.",
+  description: "크레오디교육연구소 공식 홈페이지 입니다. AI교육, 진로교육, 취업캠프, 강사양성, 레고시리어스, 강점탐색, 아로마테라피, 퍼스널컬러. 전국 출강 가능.",
   keywords: ["크레오디", "크레오디교육연구소", "띵쌤", "진로교육", "진로강사", "취업캠프", "강사섭외", "기업교육", 
     "전주진로업체","익산진로업체","군산진로업체","전북진로업체","전주팀빌딩","팀빌딩","청소년팀빌딩","정읍진로업체","진안진로업체",
     "진로캠프","김제진로교육","김제진로업체","AI진로교육","인공지능진로교육","AI활용교육","전북팀빌딩","전주고교학점제","전주취업교육",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "크레오디교육연구소(Creo.D)",
     images: [
       {
-        url: "/og-image.png", 
+        url: "/og-image.jpg", 
         width: 1200,
         height: 630,
         alt: "크레오디교육연구소 대표 이미지",        
@@ -50,11 +51,9 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={inter.className}>
-        {/* ▼▼▼ 여기가 핵심! 모든 페이지의 머리 위에 메뉴바를 고정시킴 ▼▼▼ */}
         <SiteHeader /> 
-        
-        {/* 그 아래에 페이지 내용이 들어갑니다 */}
         {children}
+        <SiteFooter />
       </body>
     </html>
   );
